@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+<head>
+    <meta charset="utf-8"/>
+    <title>Price Airbnb</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/semantic-ui/2.4.1/semantic.min.css">
+    <script src="http://cdn.bootcss.com/semantic-ui/2.4.1/semantic.min.js"></script>
+
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="http://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="http://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.Default.css"/>
+
+    <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.3.0"></script>
+    <script type='text/javascript'
+            src='http://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster.js'></script>
+
+</head>
+<body>
+<div class="ui inverted vertical masthead segment">
+    <div class="ui container">
+        <div class="ui large secondary inverted pointing menu">
+            <a href="{% url 'home' %}" class="active item">Home</a>
+            <a href="{% url 'map' %}" class="item">City reports</a>
+        </div>
+    </div>
+    <section id="content">{% block content %}{% endblock %}</section>
+</div>
+</body>
+</html>
