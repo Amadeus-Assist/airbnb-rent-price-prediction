@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% load static %}
+    <div id="mapid" class="map"></div>
+    <div>
+        <div id="seasonal-chart"></div>
+        <div id="distribution-chart"></div>
+        <div id="availability-chart"></div>
+        <div id="price-chart"></div>
+    </div>
+    <script src="https://static.fusioncharts.com/code/latest/fusioncharts.js"></script>
+    <script src="https://static.fusioncharts.com/code/latest/themes/fusioncharts.theme.candy.js"></script>
+    <script>
+        var dateList = `{{ date_list }}`;
+        var medianList = `{{ median_list }}`;
+        var avgList = `{{ avg_list }}`;
+        var availability = `{{ availability }}`;
+        var hotel = `{{ hotel }}`;
+        var private = `{{ private }}`;
+        var entire = `{{ entire }}`;
+        var share = `{{ shared }}`;
+        var category = "{{ category }}";
+        var entireList = "{{ entire_list }}";
+        var privateList = "{{ private_list }}";
+        var hotelList = "{{ hotel_list }}";
+        var shareList = "{{ share_list }}";
+        var city = "{{ city }}";
+    </script>
+    <script type="text/javascript" src='{% static "js/geovisual.js" %}'></script>
+    <script type="text/javascript" src='{% static "js/chart.js" %}'></script>
+{% endblock %}

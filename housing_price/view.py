@@ -1,7 +1,6 @@
+from django.http import HttpResponse
 from django.shortcuts import render
+import pandas_gbq
 
-
-def hello(request):
-    context = {}
-    context['content1'] = 'Hello World!'
-    return render(request, 'hello.html', context)
+def home(request):
+    return render(request, 'home.html')
