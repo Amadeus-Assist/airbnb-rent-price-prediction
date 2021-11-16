@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Interactive maps for Django web apps</title>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet'/>
+</head>
+<body>
+<h1>Map time!</h1>
+<div id='map' style='width: 100%; height: 500px;'></div>
+<script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoiZ3JhdmVzY243IiwiYSI6ImNrdzFiMmNsbmEyeGwybnFwdzdwdXh3bWgifQ.yrP_vrJ8VRA-1uqTUwkPig';
+    var map = new mapboxgl.Map({
+        attributionControl: false,
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [-74.006, 40.7128], {# New York #}
+        zoom: 9, {# Zoom Level #}
+        pitch: 0, {# View Angle #}
+        bearing: 0, {# Map Rotation #}
+    }).addControl(new mapboxgl.AttributionControl({
+        customAttribution: 'Liqin Zhang'
+    }));
+
+    // Set marker options.
+    const nyc_marker = new mapboxgl.Marker({
+        color: "red",
+        draggable: true
+    }).setLngLat([-73.96, 40.7528])
+        .addTo(map);
+</script>
+
+</body>
+</html>
