@@ -66,6 +66,7 @@ def covid_single_update(datestr):
             row_idx += 1
 
     df_sink = pandas.DataFrame(data_list, columns=df_column)
+    df_sink['date']=pandas.to_datetime(df_sink.date)
 
     pandas_gbq.to_gbq(df_sink,
                       dest_table,

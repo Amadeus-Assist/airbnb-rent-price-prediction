@@ -15,8 +15,9 @@ def parse_city(citystr):
     cc = citystr.split('),(')
     for tp in cc:
         tps = tp.split(',')
-        res.add((tps[0].strip(), tp[1].strip(), tp[2].strip()))
+        res.add((tps[0].strip(), tps[1].strip(), tps[2].strip()))
     return res
+
 
 prop = Property_factory.get_instance()
 credential_path = prop['credential_path']
@@ -74,6 +75,7 @@ for i in range(days):
             row_idx += 1
 
 df_sink = pandas.DataFrame(data_list, columns=df_column)
+df_sink['date'] = pandas.to_datetime(df_sink.date)
 
 pandas_gbq.to_gbq(df_sink,
                   dest_table,
