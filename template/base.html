@@ -18,18 +18,16 @@
             integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
             crossorigin=""></script>
 
-{#    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/"></script>#}
-    <script src="{% static "js/leaflet.markercluster.js" %}"></script>
-    <link rel="stylesheet" href="{% static "css/MarkerCluster.css" %}">
-
+    <script src="{% static "js/leaflet.markercluster-src.js" %}"></script>
+    <link rel="stylesheet" href="{% static "css/MarkerCluster.Default.css" %}">
 
 </head>
 <body>
 <div class="ui vertical masthead segment">
     <div class="ui container">
         <div class="ui large secondary pointing menu">
-            <a href="{% url 'home' %}" class="active item">Home</a>
-            <a href="{% url 'map' %}" class="item">City reports</a>
+            <a href="{% url 'home' %}" class="item">Home</a>
+            <a href="{% url 'map' %}" class="item">World Map</a>
         </div>
     </div>
     <section id="content">{% block content %}{% endblock %}</section>
