@@ -19,6 +19,5 @@ from . import view
 
 urlpatterns = [
     path('', view.home, name='home'),
-    path('geovisual/', include('geovisual.urls')),
-    path('predictor/', include('predictor.urls'))
+    path('geovisual/', include('geovisual.urls'))
 ]

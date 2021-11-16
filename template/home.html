@@ -1,12 +1,32 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div class="ui inverted vertical masthead center aligned segment">
+
+    <div class="ui vertical masthead center aligned segment">
         <div class="ui text container">
-            <h1 class="ui inverted header">Welcome to Price Airbnb!</h1>
-            <h2>Click to select one function.</h2>
+            <h1 class="ui header">Airbnb Rent Price Prediction</h1>
+            <h2>Input city names to navigate!</h2>
             <br>
-            <a href="#" class="ui massive inverted teal button">City reports</a>
-            <a href="#" class="ui massive inverted orange button">Price predictor</a>
+            <div class="ui fluid action input">
+                <input type="text" id="cityName" placeholder="Search...">
+                <button class="ui primary button" id="viewCity">View Maps</button>
+            </div>
         </div>
     </div>
+
+    <script>
+        $("#viewCity").click(function () {
+            var cityName = document.getElementById("cityName")
+            redirectCity(cityName.value);
+        });
+
+        function redirectCity(name) {
+            if (name == "nyc" || name == "new york") {
+                name = "nyc";
+            } else {
+                name = ""; // by default show worldmap
+            }
+            window.location = window.location.href + "geovisual/" + name
+            return false;
+        }
+    </script>
 {% endblock %}

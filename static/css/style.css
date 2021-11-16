@@ -29,13 +29,13 @@
 
 .map {
     width: 55%;
-    height: 770px;
+    height: 800px;
     float: left;
 }
 
 .worldmap {
     width: 100%;
-    height: 770px;
+    height: 800px;
 }
 
 #predict-form {

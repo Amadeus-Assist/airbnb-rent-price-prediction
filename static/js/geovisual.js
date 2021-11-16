@@ -1,9 +1,5 @@
 const lngList = {
     "nyc": [40.77, -73.97, 11],
-    "london": [51.5, -0.1, 10],
-    "tokyo": [35.6, 139.46, 10],
-    "beijing": [40.2, 116.46, 9],
-    "paris": [48.85, 2.33, 12]
 }
 
 // initialize the map
