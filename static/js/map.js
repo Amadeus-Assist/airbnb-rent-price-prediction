@@ -1,23 +1,16 @@
 // world map layer
-var layer = new L.StamenTileLayer("toner");
-var map = new L.Map("mapid", {
-    center: new L.LatLng(40.77, -73.97),
-    zoom: 3
-});
-map.addLayer(layer);
+var mymap = L.map('worldmapid').setView([40.77, -73.97], 3.5);
 
+L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+    attribution: '<a href="https://www.mapbox.com/">Mapbox</a> by Liqin Zhang',
+    maxZoom: 18,
+    id: 'mapbox/streets-v11',
+    tileSize: 512,
+    zoomOffset: -1,
+    accessToken: 'pk.eyJ1IjoiZ3JhdmVzY243IiwiYSI6ImNrdzFiMmNsbmEyeGwybnFwdzdwdXh3bWgifQ.yrP_vrJ8VRA-1uqTUwkPig'
+}).addTo(mymap);
 
-var nycMarker = L.marker([41.33, -77],
-    {
-        icon: L.icon({
-            iconUrl: '../static/img/city.png',
-            iconSize: [30, 30]
-        })
-    });
-nycMarker.on('click', function (e) {
+var nyc_marker = L.marker([40.77, -73.97]).addTo(mymap);
+nyc_marker.on('click', function (e) {
     window.location.replace('nyc');
 });
-
-var clusters = L.markerClusterGroup();
-clusters.addLayer(nycMarker);
-map.addLayer(clusters);
