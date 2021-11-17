@@ -42,7 +42,7 @@ def city_view(request, city):
         "hotel_list": "0.11|0.46|0.13|0.12",
         "share_list": "2.27|0.24|0.05|0.02",
         "availability": "81",
-        "city": "nyc"
+        "city": city
     }
 
     return render(request, 'geovisual.html', data)

@@ -6,7 +6,7 @@ from datetime import datetime as dt, timedelta
 import pandas_gbq
 from google.oauth2 import service_account
 
-time_format = '%m-%d-%Y'
+time_format = '%m-%d'
 table_time_format = '%Y-%m-%d %H:%M:%S'
 prop = Property_factory.get_instance()
 credential_path = prop['credential_path']
@@ -40,7 +40,7 @@ def query_common_data(city, state, country, dateStart, dateEnd):
     #                       time_format).strftime(table_time_format) + ' UTC'
     SQL = "SELECT C.date, C.new FROM {} C WHERE C.date BETWEEN @dateStart AND @dateEnd"\
         " AND C.city=@city ORDER BY C.date".format(source_table)
-        # " AND C.city=@city AND C.state=@state AND C.country=@country ORDER BY C.date".format(source_table)
+    # " AND C.city=@city AND C.state=@state AND C.country=@country ORDER BY C.date".format(source_table)
     query_config = {
         'query': {
             'parameterMode':

@@ -1,9 +1,9 @@
-const lngList = {
-    "nyc": [40.77, -73.97, 11],
-}
+// const lngList = {
+//     "nyc": [40.77, -73.97, 11],
+// }
 
 // initialize the map
-var map = L.map('mapid').setView([lngList[city][0], lngList[city][1]], lngList[city][2]);
+var map = L.map('mapid').setView([city_localtion.get(city)[0], city_localtion.get(city)[1]], 11);
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: '<a href="https://www.mapbox.com/">Mapbox</a> by Liqin Zhang',
     maxZoom: 18,
@@ -14,25 +14,25 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 }).addTo(map);
 
 
-// add neighborhoods
-$.getJSON("../../static/data/" + city + "-neighborhoods.geojson", function (neighborhoods) {
-    L.geoJson(neighborhoods, {
-        style: function () {
-            return {color: "rgba(44,66,194,0.95)", weight: 2, fillColor: "#416272", fillOpacity: .4};
-        }
-    }).addTo(map);
-});
+// // add neighborhoods
+// $.getJSON("../../static/data/" + city + "-neighborhoods.geojson", function (neighborhoods) {
+//     L.geoJson(neighborhoods, {
+//         style: function () {
+//             return {color: "rgba(44,66,194,0.95)", weight: 2, fillColor: "#416272", fillOpacity: .4};
+//         }
+//     }).addTo(map);
+// });
 
-// add houses
-$.getJSON("../../static/data/" + city + "_feature.geojson", function (houses) {
-    var rooms = L.geoJson(houses, {
-        pointToLayer: function (feature, lat_lng) {
-            var room = L.marker(lat_lng);
-            room.bindPopup(feature.properties.name + '<br/>' + feature.properties.price);
-            return room;
-        }
-    });
-    var markers = L.markerClusterGroup();
-    markers.addLayer(rooms);
-    map.addLayer(markers);
-});
+// // add houses
+// $.getJSON("../../static/data/" + city + "_feature.geojson", function (houses) {
+//     var rooms = L.geoJson(houses, {
+//         pointToLayer: function (feature, lat_lng) {
+//             var room = L.marker(lat_lng);
+//             room.bindPopup(feature.properties.name + '<br/>' + feature.properties.price);
+//             return room;
+//         }
+//     });
+//     var markers = L.markerClusterGroup();
+//     markers.addLayer(rooms);
+//     map.addLayer(markers);
+// });

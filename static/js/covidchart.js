@@ -8,13 +8,15 @@ const covidData = {
         pixelsperlabel: "28",
         compactdatamode: "1",
         dataseparator: "|",
-        theme: "candy"
+        theme: "candy",
+        labelDisplay: "rotate",
+        slantLabel: "1"
     },
     categories: [
         { category: datelist_covid }
     ],
     dataset: [
-        {seriesname: "Daily New Cases", data: newlist_covid}
+        {data: newlist_covid}
     ]
 };
 
