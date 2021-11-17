@@ -21,7 +21,7 @@ def city_view(request, city):
     # median = csv_data["median_price"].map(lambda x:str(x))
     # median_list = median.values.tolist()
 
-    coviddata = query_common_request(city, 120)
+    coviddata = query_common_request(city, 270)
 
     datelist_covid = coviddata['date']
     newlist_covid = coviddata['new']
