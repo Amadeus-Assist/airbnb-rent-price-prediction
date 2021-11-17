@@ -15,7 +15,7 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 
 
 // add neighborhoods
-$.getJSON("../static/data/" + city + "-neighborhoods.geojson", function (neighborhoods) {
+$.getJSON("../../static/data/" + city + "-neighborhoods.geojson", function (neighborhoods) {
     L.geoJson(neighborhoods, {
         style: function () {
             return {color: "rgba(44,66,194,0.95)", weight: 2, fillColor: "#416272", fillOpacity: .4};
@@ -24,7 +24,7 @@ $.getJSON("../static/data/" + city + "-neighborhoods.geojson", function (neighbo
 });
 
 // add houses
-$.getJSON("../static/data/" + city + "_feature.geojson", function (houses) {
+$.getJSON("../../static/data/" + city + "_feature.geojson", function (houses) {
     var rooms = L.geoJson(houses, {
         pointToLayer: function (feature, lat_lng) {
             var room = L.marker(lat_lng);

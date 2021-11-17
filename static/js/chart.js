@@ -23,8 +23,8 @@ FusionCharts.ready(function() {
     var myChart = new FusionCharts({
         type: "zoomline",
         renderAt: "seasonal-chart",
-        width: "44%",
-        height: "290",
+        width: "100%",
+        height: "100%",
         dataFormat: "json",
         dataSource: seasonalData
     }).render();
@@ -56,8 +56,8 @@ FusionCharts.ready(function() {
     var myChart = new FusionCharts({
         type: "angulargauge",
         renderAt: "availability-chart",
-        width: "22%",
-        height: "230",
+        width: "100%",
+        height: "100%",
         dataFormat: "json",
         dataSource: availabilityData
     }).render();
@@ -87,8 +87,8 @@ FusionCharts.ready(function() {
     var myChart = new FusionCharts({
         type: "pie2d",
         renderAt: "distribution-chart",
-        width: "22%",
-        height: "230",
+        width: "100%",
+        height: "100%",
         dataFormat: "json",
         dataSource: distributionData
     }).render();
@@ -119,8 +119,8 @@ FusionCharts.ready(function() {
     var myChart = new FusionCharts({
         type: "mscolumn2d",
         renderAt: "price-chart",
-        width: "44%",
-        height: "260",
+        width: "100%",
+        height: "100%",
         dataFormat: "json",
         dataSource: priceData
     }).render();

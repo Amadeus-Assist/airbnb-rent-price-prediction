@@ -56,3 +56,39 @@
 .leaflet-popup-content {
     color: black;
 }
+
+.chart-container{
+    width:45%;
+    height: 800px;
+    float: right;
+}
+
+.housing-chart{
+    width: 50%;
+    height: 50%;
+    float: left;
+    background-color: orange;
+}
+
+.covid-chart{
+    width: 50%;
+    height: 50%;
+    /* position: relative;
+    left: 50%;
+    top: 0%; */
+    float: right;
+}
+
+.emotion-display{
+    width: 50%;
+    height: 50%;
+    float: left;
+    background-color: navy;
+}
+
+.city-discription{
+    width: 50%;
+    height: 50%;
+    float: right;
+    background-color: gray;
+}

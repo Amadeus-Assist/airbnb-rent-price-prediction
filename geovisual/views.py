@@ -1,27 +1,37 @@
+import sys
+
+sys.path.append('housing_price/.')
 from django.shortcuts import render
 from django.http import HttpResponse
 import pandas as pd
+from housing_price.covid.query_covid import query_common_request
 
 
 def map(request):
     return render(request, 'map.html')
 
+def city_view(request, city):
+    # csv_data = pd.read_csv('static/data/nyc_stat.csv')
+    # date = csv_data["Date"].map(lambda x:x[2:10])
+    # datelist_covid = date.values.tolist()
 
-def nyc_geovisual(request):
-    csv_data = pd.read_csv('static/data/nyc_stat.csv')
-    date = csv_data["Date"].map(lambda x:x[2:10])
-    date_list = date.values.tolist()
+    # avg = csv_data["avg_price"].map(lambda x:str(x))
+    # newlist_covid = avg.values.tolist()
 
-    avg = csv_data["avg_price"].map(lambda x:str(x))
-    avg_list = avg.values.tolist()
+    # median = csv_data["median_price"].map(lambda x:str(x))
+    # median_list = median.values.tolist()
 
-    median = csv_data["median_price"].map(lambda x:str(x))
-    median_list = median.values.tolist()
+    coviddata = query_common_request(city, 120)
+
+    datelist_covid = coviddata['date']
+    newlist_covid = coviddata['new']
 
     data = {
-        "date_list": '|'.join(date_list),
-        "avg_list": '|'.join(avg_list),
-        "median_list": '|'.join(median_list),
+        # "date_list": '|'.join(date_list),
+        # "avg_list": '|'.join(avg_list),
+        # "median_list": '|'.join(median_list),
+        "covid_date_list": '|'.join(datelist_covid),
+        "covid_new_list": '|'.join(newlist_covid),
         "hotel": "0.9",
         "private": "45.17",
         "entire": "51.47",

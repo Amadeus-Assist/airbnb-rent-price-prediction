@@ -12,5 +12,5 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 
 var nyc_marker = L.marker([40.77, -73.97]).addTo(mymap);
 nyc_marker.on('click', function (e) {
-    window.location.replace('nyc');
+    window.location.replace('cityview/nyc');
 });

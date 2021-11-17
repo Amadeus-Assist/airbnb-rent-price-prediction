@@ -2,17 +2,18 @@
 {% block content %}
     {% load static %}
     <div id="mapid" class="map"></div>
-    <div>
-        <div id="seasonal-chart"></div>
-        <div id="distribution-chart"></div>
-        <div id="availability-chart"></div>
-        <div id="price-chart"></div>
+    <div class="chart-container">
+        <div class="housing-chart" id="housing-chart"></div>
+        <div class="covid-chart" id="covid-chart"></div>
+        <div class="emotion-display" id="emotion-display"></div>
+        <div class="city-discription" id="city-discription"></div>
     </div>
     <script src="https://static.fusioncharts.com/code/latest/fusioncharts.js"></script>
     <script src="https://static.fusioncharts.com/code/latest/themes/fusioncharts.theme.candy.js"></script>
     <script>
-        var dateList = `{{ date_list }}`;
-        var medianList = `{{ median_list }}`;
+        var datelist_covid = "{{ covid_date_list }}";
+        var newlist_covid = "{{ covid_new_list }}";
+        // var medianList = `{{ median_list }}`;
         var avgList = `{{ avg_list }}`;
         var availability = `{{ availability }}`;
         var hotel = `{{ hotel }}`;
@@ -27,5 +28,5 @@
         var city = "{{ city }}";
     </script>
     <script type="text/javascript" src='{% static "js/geovisual.js" %}'></script>
-    <script type="text/javascript" src='{% static "js/chart.js" %}'></script>
+    <script type="text/javascript" src='{% static "js/covidchart.js" %}'></script>
 {% endblock %}
