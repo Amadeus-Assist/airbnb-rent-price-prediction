@@ -18,7 +18,8 @@ pandas_gbq.context.project = projectId
 citymap = {
     'nyc': ('New York', 'New York', 'US'),
     'la': ('Los Angeles', 'California', 'US'),
-    'sh': ('Shanghai', 'Shanghai', 'China')
+    'sh': ('Shanghai', 'Shanghai', 'China'),
+    'chicago': ('Cook', 'Illinois', 'US'),
 }
 
 

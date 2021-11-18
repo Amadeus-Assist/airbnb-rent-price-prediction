@@ -80,4 +80,4 @@ df_sink['date'] = pandas.to_datetime(df_sink.date)
 pandas_gbq.to_gbq(df_sink,
                   dest_table,
                   project_id=projectId,
-                  if_exists='replace')
+                  if_exists='append')

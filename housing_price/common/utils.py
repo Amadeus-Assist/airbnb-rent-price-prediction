@@ -85,10 +85,17 @@ class SimilarCityRetriever:
     namemap = {
         'nyc': 'nyc',
         'new york': 'nyc',
+        'new york city': 'nyc',
         'la': 'la',
         'los angeles': 'la',
-        'sh': 'sh',
-        'shanghai': 'sh'
+        'chicago': 'chicago',
+        'chi': 'chicago'
+        # 'sh': 'sh',
+        # 'shanghai': 'sh'
+        # 'tyo': 'tyo',
+        # 'tokyo': 'tyo',
+        # 'lon': 'lon',
+        # 'lon': 'london'
     }
     namelist = np.array(list(namemap.keys()))
 
