@@ -64,10 +64,10 @@
 }
 
 .housing-chart{
-    width: 50%;
+    width: 100%;
     height: 50%;
     float: left;
-    background-color: orange;
+    background-color: white;
 }
 
 .covid-chart{

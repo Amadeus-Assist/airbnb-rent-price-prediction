@@ -9,3 +9,4 @@ def home(request):
 
 def similar_city(request, city):
     return JsonResponse({'city': SimilarCityRetriever.getSimilarCity(city)})
+
