@@ -77,33 +77,33 @@ def query_common_data(city, state, country, dateStart, dateEnd):
                 'parameterValue': {
                     'value': city
                 }
-            }, {
-                'name': 'state',
-                'parameterType': {
-                    'type': 'STRING'
-                },
-                'parameterValue': {
-                    'value': state
-                }
-            }, {
-                'name': 'country',
-                'parameterType': {
-                    'type': 'STRING'
-                },
-                'parameterValue': {
-                    'value': country
-                }
-            }]
+            }
+            # , {
+            #     'name': 'state',
+            #     'parameterType': {
+            #         'type': 'STRING'
+            #     },
+            #     'parameterValue': {
+            #         'value': state
+            #     }
+            # }, {
+            #     'name': 'country',
+            #     'parameterType': {
+            #         'type': 'STRING'
+            #     },
+            #     'parameterValue': {
+            #         'value': country
+            #     }
+            # }
+            ]
         }
     }
-    print(dt.now())
     df = pandas_gbq.read_gbq(SQL, configuration=query_config)
     df['date'] = df['date'].dt.strftime(time_format)
     data = {'date': [], 'new': []}
     for index, row in df.iterrows():
         data['date'].append(row['date'])
         data['new'].append(str(row['new']))
-    print(dt.now())
     return data
 
 

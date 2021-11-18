@@ -1,38 +1,58 @@
 {% extends 'base.html' %}
 {% block content %}
 
-    <div class="ui vertical masthead center aligned segment">
-        <div class="ui text container">
-            <h1 class="ui header">Airbnb Rent Price Prediction</h1>
-            <h2>Input city names to navigate!</h2>
-            <br>
-            <div class="ui fluid action input">
-                <input type="text" id="cityName" placeholder="Search...">
-                <button class="ui primary button" id="viewCity">View Maps</button>
-            </div>
+<div class="ui vertical masthead center aligned segment">
+    <div class="ui text container">
+        <h1 class="ui header">Airbnb Rent Price Prediction</h1>
+        <h2>Input city names to navigate!</h2>
+        <br>
+        <div class="ui fluid action input">
+            <input type="text" id="cityName" placeholder="Search...">
+            <button class="ui primary button" id="viewCity">View Maps</button>
         </div>
     </div>
+</div>
 
-    <script>
-        $("#viewCity").click(function () {
-            var cityName = document.getElementById("cityName")
-            let re = /^[\w -]{1,20}$/;
-            if((""+cityName.value).match(re)){
-                redirectCity(cityName.value);
-            }else{
-                alert("Please enter valid city name!");
-            }
-        });
+<script>
+    $("#viewCity").click(function(){
+        goSearch();
+    }
+        //     function () {
+        //     var cityName = document.getElementById("cityName")
+        //     let re = /^[\w -]{1,20}$/;
+        //     if((""+cityName.value).match(re)){
+        //         redirectCity(cityName.value);
+        //     }else{
+        //         alert("Please enter valid city name!");
+        //     }
+        // }
+    );
+
+    document.addEventListener('keypress', event => {
+        if(event.key=='Enter'){
+            goSearch();
+        }
+    },false);
+
+    function goSearch() {
+        var cityName = document.getElementById("cityName")
+        let re = /^[\w -]{1,20}$/;
+        if (("" + cityName.value).match(re)) {
+            redirectCity(cityName.value);
+        } else {
+            alert("Please enter valid city name!");
+        }
+    }
 
 
-        function redirectCity(name) {
-            const cityNameRequest = new Request(window.location.href+"getSimilarCity/"+name);
-            fetch(cityNameRequest).then(response => response.json())
+    function redirectCity(name) {
+        const cityNameRequest = new Request(window.location.href + "getSimilarCity/" + name);
+        fetch(cityNameRequest).then(response => response.json())
             .then(data => {
                 window.location = window.location.href + "geovisual/cityview/" + data.city;
             });
-            return false;
-        }
+        return false;
+    }
 
         // function redirectCity(name) {
         //     if (name == "nyc" || name == "new york") {
@@ -43,5 +63,5 @@
         //     window.location = window.location.href + "geovisual/" + name
         //     return false;
         // }
-    </script>
+</script>
 {% endblock %}
