@@ -22,7 +22,7 @@ const covidData = {
         labelStep: "28",
         // compactdatamode: "1",
         // dataseparator: "|",
-        theme: "fusion",
+        theme: "candy",
         labelDisplay: "rotate",
         slantLabel: "1"
     },
