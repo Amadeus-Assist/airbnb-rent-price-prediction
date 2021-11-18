@@ -95,6 +95,7 @@ class SimilarCityRetriever:
     @staticmethod
     def getSimilarCity(cityname):
         scr = SimilarCityRetriever
+        cityname = cityname.lower()
         evalarr = [editdistance.eval(cityname, w) for w in scr.namelist]
         idx = np.argmin(evalarr)
         return scr.namemap[scr.namelist[idx]]

@@ -8,6 +8,7 @@ import pandas_gbq
 from google.oauth2 import service_account
 import os
 
+
 def parse_city(citystr):
     res = set()
     citystr = citystr[1:len(citystr) - 1]
@@ -17,6 +18,7 @@ def parse_city(citystr):
         res.add((tps[0].strip(), tps[1].strip(), tps[2].strip()))
     return res
 
+
 def covid_single_update(datestr):
     prop = Property_factory.get_instance()
     credential_path = prop['credential_path']
@@ -24,6 +26,7 @@ def covid_single_update(datestr):
     source_path_prefix = prop['covid_source_prefix']
     dest_table = prop['covid_dest_table']
     time_format = '%m-%d-%Y'
+    table_time_format = '%Y-%m-%d %H:%M:%S'
     date = dt.strptime(datestr, time_format)
     source_suffix = '.csv'
     df_column = ['date', 'city', 'state', 'country', 'confirmed', 'new']
@@ -36,7 +39,7 @@ def covid_single_update(datestr):
     pandas_gbq.context.credentials = credentials
     pandas_gbq.context.project = projectId
 
-    prev_date_str = (date - timedelta(1)).strftime(time_format)
+    prev_date_str = (date - timedelta(1)).strftime(table_time_format) + " UTC"
     SQL = "SELECT C.city, C.confirmed FROM " + dest_table + " C WHERE C.date='" + prev_date_str + "'"
     prev_df = pandas_gbq.read_gbq(SQL)
     prev_confirmed_dict = {}
@@ -66,7 +69,7 @@ def covid_single_update(datestr):
             row_idx += 1
 
     df_sink = pandas.DataFrame(data_list, columns=df_column)
-    df_sink['date']=pandas.to_datetime(df_sink.date)
+    df_sink['date'] = pandas.to_datetime(df_sink.date)
 
     pandas_gbq.to_gbq(df_sink,
                       dest_table,
@@ -78,3 +81,6 @@ def covid_daily_update():
     time_format = '%m-%d-%Y'
     datestr = (dt.now() - timedelta(1)).strftime(time_format)
     covid_single_update(datestr)
+
+
+covid_daily_update()

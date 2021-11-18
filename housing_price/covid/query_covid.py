@@ -45,7 +45,8 @@ def query_common_data(city, state, country, dateStart, dateEnd):
         'query': {
             'parameterMode':
             'NAMED',
-            'queryParameters': [{
+            'queryParameters':
+            [{
                 'name': 'source_table',
                 'parameterType': {
                     'type': 'STRING'
@@ -78,24 +79,24 @@ def query_common_data(city, state, country, dateStart, dateEnd):
                     'value': city
                 }
             }
-            # , {
-            #     'name': 'state',
-            #     'parameterType': {
-            #         'type': 'STRING'
-            #     },
-            #     'parameterValue': {
-            #         'value': state
-            #     }
-            # }, {
-            #     'name': 'country',
-            #     'parameterType': {
-            #         'type': 'STRING'
-            #     },
-            #     'parameterValue': {
-            #         'value': country
-            #     }
-            # }
-            ]
+             # , {
+             #     'name': 'state',
+             #     'parameterType': {
+             #         'type': 'STRING'
+             #     },
+             #     'parameterValue': {
+             #         'value': state
+             #     }
+             # }, {
+             #     'name': 'country',
+             #     'parameterType': {
+             #         'type': 'STRING'
+             #     },
+             #     'parameterValue': {
+             #         'value': country
+             #     }
+             # }
+             ]
         }
     }
     df = pandas_gbq.read_gbq(SQL, configuration=query_config)
