@@ -2,9 +2,6 @@
 //     "nyc": [40.77, -73.97, 11],
 // }
 
-
-console.log(city_localtion.get(city)[2]);
-
 // initialize the map
 var map = L.map('mapid').setView([city_localtion.get(city)[0], city_localtion.get(city)[1]], city_localtion.get(city)[2]);
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {

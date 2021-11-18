@@ -2,6 +2,8 @@ from pyspark.sql import SparkSession
 from pyspark import SparkConf, SparkContext
 import os
 import sys
+import editdistance
+import numpy as np
 
 
 class Spark_session_factory(object):
@@ -63,6 +65,7 @@ class Properties(object):
             pro_file.close()
         return self.properties
 
+
 class Property_factory(object):
     __instance = None
 
@@ -72,5 +75,26 @@ class Property_factory(object):
     @classmethod
     def get_instance(cls):
         if not cls.__instance:
-            cls.__instance = Properties('housing_price/sources/housing_config.properties').getProperties()
+            cls.__instance = Properties(
+                'housing_price/sources/housing_config.properties'
+            ).getProperties()
         return cls.__instance
+
+
+class SimilarCityRetriever:
+    namemap = {
+        'nyc': 'nyc',
+        'new york': 'nyc',
+        'la': 'la',
+        'los angeles': 'la',
+        'sh': 'sh',
+        'shanghai': 'sh'
+    }
+    namelist = np.array(list(namemap.keys()))
+
+    @staticmethod
+    def getSimilarCity(cityname):
+        scr = SimilarCityRetriever
+        evalarr = [editdistance.eval(cityname, w) for w in scr.namelist]
+        idx = np.argmin(evalarr)
+        return scr.namemap[scr.namelist[idx]]

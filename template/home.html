@@ -16,17 +16,32 @@
     <script>
         $("#viewCity").click(function () {
             var cityName = document.getElementById("cityName")
-            redirectCity(cityName.value);
+            let re = /^[\w -]{1,20}$/;
+            if((""+cityName.value).match(re)){
+                redirectCity(cityName.value);
+            }else{
+                alert("Please enter valid city name!");
+            }
         });
 
+
         function redirectCity(name) {
-            if (name == "nyc" || name == "new york") {
-                name = "nyc";
-            } else {
-                name = ""; // by default show worldmap
-            }
-            window.location = window.location.href + "geovisual/" + name
+            const cityNameRequest = new Request(window.location.href+"getSimilarCity/"+name);
+            fetch(cityNameRequest).then(response => response.json())
+            .then(data => {
+                window.location = window.location.href + "geovisual/cityview/" + data.city;
+            });
             return false;
         }
+
+        // function redirectCity(name) {
+        //     if (name == "nyc" || name == "new york") {
+        //         name = "nyc";
+        //     } else {
+        //         name = ""; // by default show worldmap
+        //     }
+        //     window.location = window.location.href + "geovisual/" + name
+        //     return false;
+        // }
     </script>
 {% endblock %}
