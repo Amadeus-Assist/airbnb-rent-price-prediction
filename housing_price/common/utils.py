@@ -106,3 +106,12 @@ class SimilarCityRetriever:
         evalarr = [editdistance.eval(cityname, w) for w in scr.namelist]
         idx = np.argmin(evalarr)
         return scr.namemap[scr.namelist[idx]]
+
+
+def getPicList(cityname):
+    path = 'static/img/citypreview'+cityname
+    res = []
+    for root, directories, files in os.walk(path):
+        for name in files:
+            res.append(str(os.path.join(path, name)))
+    return res

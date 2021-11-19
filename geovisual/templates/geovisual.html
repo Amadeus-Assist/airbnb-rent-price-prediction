@@ -6,7 +6,9 @@
         <div class="covid-chart" id="covid-chart"></div>
         <div class="emotion-display" id="emotion-display"></div>
         <div class="housing-chart" id="housing-chart"></div>
-{#        <div class="city-discription" id="city-discription"></div>#}
+<!-- {#      <div class="city-discription" id="city-discription">
+    <li><img id="citypic1" /></li>
+</div>#} -->
     </div>
     <script src="https://static.fusioncharts.com/code/latest/fusioncharts.js"></script>
     <script src="https://static.fusioncharts.com/code/latest/themes/fusioncharts.theme.candy.js"></script>
@@ -17,9 +19,11 @@
         var medianList = `{{ median_list }}`;
         var avgList = `{{ avg_list }}`;
         var city = "{{ city }}";
+        // var cityPicNum = 1;
     </script>
     <script type="text/javascript" src='{% static "js/citylocation.js" %}'></script>
     <script type="text/javascript" src='{% static "js/geovisual.js" %}'></script>
     <script type="text/javascript" src='{% static "js/housingchart.js" %}'></script>
     <script type="text/javascript" src='{% static "js/covidchart.js" %}'></script>
+    <!-- <script type="text/javascript" src='{% static "js/loadcitypic.js" %}'></script> -->
 {% endblock %}
