@@ -5,6 +5,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 import pandas as pd
 from housing_price.covid.query_covid import query_common_request
+from django.http.response import JsonResponse
+from housing_price.common.utils import getPicList
 
 
 def map(request):
@@ -38,4 +40,7 @@ def city_view(request, city):
     }
 
     return render(request, 'geovisual.html', data)
+
+def get_pic_list(request, city):
+    return JsonResponse({'pic': getPicList(city)})
 

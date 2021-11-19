@@ -21,5 +21,4 @@ urlpatterns = [
     path('', view.home, name='home'),
     path('geovisual/', include('geovisual.urls')),
     path('getSimilarCity/<str:city>', view.similar_city, name='getSimilarCity'),
-    # path('getPicList/<str:city>', view.get_pic_list, name='getPicList'),
 ]

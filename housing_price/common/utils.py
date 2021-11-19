@@ -4,6 +4,7 @@ import os
 import sys
 import editdistance
 import numpy as np
+import json
 
 
 class Spark_session_factory(object):
@@ -109,9 +110,10 @@ class SimilarCityRetriever:
 
 
 def getPicList(cityname):
-    path = 'static/img/citypreview'+cityname
+    path = 'static/img/citypreview/'+cityname
     res = []
     for root, directories, files in os.walk(path):
         for name in files:
-            res.append(str(os.path.join(path, name)))
+            res.append(str(path)+"/"+name)
+    # resstr = json.dumps(res)
     return res
