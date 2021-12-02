@@ -24,30 +24,38 @@ citymap = {
 
 
 def query_common_request(city, days):
+    df = query_data_with_city(city, days)
+    df['date'] = df['date'].dt.strftime(time_format)
+    data = {'date': [], 'new': []}
+    for index, row in df.iterrows():
+        data['date'].append(row['date'])
+        data['new'].append(str(row['new']))
+    return data
+
+def query_data_with_city(city, days):
     cityname = citymap[city][0]
     state = citymap[city][1]
     country = citymap[city][2]
     dateEnd = (dt.now() - timedelta(1)).strftime(table_time_format) + ' UTC'
     dateStart = (dt.now() -
                  timedelta(days)).strftime(table_time_format) + ' UTC'
-    return query_common_data(cityname, state, country, dateStart, dateEnd)
+    df = query_data(cityname, state, country, dateStart, dateEnd)
+    return df
 
-
-def query_common_data(city, state, country, dateStart, dateEnd):
+def query_data(city, state, country, dateStart, dateEnd):
     source_table = prop['covid_dest_table']
     # dateStart = dt.strptime(date_start.strip(),
     #                         time_format).strftime(table_time_format) + ' UTC'
     # dateEnd = dt.strptime(date_end.strip(),
     #                       time_format).strftime(table_time_format) + ' UTC'
     SQL = "SELECT C.date, C.new FROM {} C WHERE C.date BETWEEN @dateStart AND @dateEnd"\
-        " AND C.city=@city ORDER BY C.date".format(source_table)
+        " AND C.city=@city AND C.state=@state AND C.country=@country ORDER BY C.date".format(source_table)
     # " AND C.city=@city AND C.state=@state AND C.country=@country ORDER BY C.date".format(source_table)
     query_config = {
         'query': {
             'parameterMode':
             'NAMED',
-            'queryParameters':
-            [{
+            'queryParameters': [{
                 'name': 'source_table',
                 'parameterType': {
                     'type': 'STRING'
@@ -79,34 +87,27 @@ def query_common_data(city, state, country, dateStart, dateEnd):
                 'parameterValue': {
                     'value': city
                 }
-            }
-             # , {
-             #     'name': 'state',
-             #     'parameterType': {
-             #         'type': 'STRING'
-             #     },
-             #     'parameterValue': {
-             #         'value': state
-             #     }
-             # }, {
-             #     'name': 'country',
-             #     'parameterType': {
-             #         'type': 'STRING'
-             #     },
-             #     'parameterValue': {
-             #         'value': country
-             #     }
-             # }
-             ]
+            }, {
+                'name': 'state',
+                'parameterType': {
+                    'type': 'STRING'
+                },
+                'parameterValue': {
+                    'value': state
+                }
+            }, {
+                'name': 'country',
+                'parameterType': {
+                    'type': 'STRING'
+                },
+                'parameterValue': {
+                    'value': country
+                }
+            }]
         }
     }
     df = pandas_gbq.read_gbq(SQL, configuration=query_config)
-    df['date'] = df['date'].dt.strftime(time_format)
-    data = {'date': [], 'new': []}
-    for index, row in df.iterrows():
-        data['date'].append(row['date'])
-        data['new'].append(str(row['new']))
-    return data
+    return df
 
 
 # data = query_common_data('Shanghai', 'Shanghai', 'China', '05-04-2021',

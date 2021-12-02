@@ -83,4 +83,8 @@ def covid_daily_update():
     covid_single_update(datestr)
 
 
-covid_daily_update()
+# dend = dt.strptime('2020-12-31', '%Y-%m-%d')
+# dstart = dt.strptime('2020-08-31', '%Y-%m-%d')
+# l = (dend-dstart).days+1
+# for d in range(l):
+#     covid_single_update((dstart+timedelta(days=d)).strftime('%m-%d-%Y'))
