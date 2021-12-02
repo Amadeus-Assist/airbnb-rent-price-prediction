@@ -9,6 +9,7 @@ import numpy as np
 
 from keras.models import Sequential
 from keras.layers import LSTM, Dropout, Dense
+from keras.constraints import nonneg
 from sklearn.preprocessing import MinMaxScaler
 
 import matplotlib.pyplot as plt
@@ -16,10 +17,10 @@ from matplotlib.pylab import rcParams
 
 rcParams['figure.figsize'] = 20, 10
 
-days = 500
+days = 430
 pandasdata = query_data_with_city('chicago', days)
 length = len(pandasdata)
-trainlen = 120
+trainlen = 30
 predictlen = 120
 shiftlen = 30
 yaxisname = 'new'
@@ -59,7 +60,7 @@ lstm_model.add(
          return_sequences=True,
          input_shape=(np.shape(x_train_data)[1], 1)))
 lstm_model.add(LSTM(units=50))
-lstm_model.add(Dense(1))
+lstm_model.add(Dense(1, kernel_constraint=nonneg()))
 model_data = data[len(data) - predictlen - shiftlen - trainlen:len(data) -
                   predictlen - (shiftlen - predictlen)].values
 model_data = model_data.reshape(-1, 1)
@@ -73,13 +74,13 @@ lstm_model.compile(loss='mean_squared_error', optimizer='adam')
 # y_train_data = np.array(y_train_data)
 # print('--------------------------')
 # print(y_train_data)
-for i in range(20):
+for i in range(10):
     lstm_model.fit(x_train_data,
                    y_train_data,
                    epochs=1,
                    batch_size=1,
                    verbose=2)
-    lstm_model.reset_states()
+    # lstm_model.reset_states()
 X_test = []
 # print('model_data.shape[0]: {}'.format(model_data.shape[0]))
 for i in range(0, predictlen):
@@ -94,7 +95,8 @@ predicted_stock_price = scaler.inverse_transform(predicted_stock_price)
 train_data = data[:length - predictlen]
 valid_data = data[length - predictlen:]
 valid_data['Predictions'] = predicted_stock_price
-print(valid_data)
-plt.plot(train_data[yaxisname])
-plt.plot(valid_data[[yaxisname, "Predictions"]])
+plt.plot(train_data[yaxisname], label='Train Data')
+plt.plot(valid_data[[yaxisname, "Predictions"]],
+         label=['Valid Data', 'Prediction Data'])
+plt.legend()
 plt.show()
