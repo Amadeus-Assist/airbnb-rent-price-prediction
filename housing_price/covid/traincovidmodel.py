@@ -28,7 +28,7 @@ max = 50000
 min = 0
 maxlen = 365
 trainlen = 30
-predictlen = 1
+predictlen = 30
 rootpath = Path(sys.path[0]).parent.parent.parent
 modelpath = os.path.join(rootpath,'model','covid')
 
