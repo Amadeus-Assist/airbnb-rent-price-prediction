@@ -5,6 +5,9 @@ from common.utils import Property_factory
 from datetime import datetime as dt, timedelta
 import pandas_gbq
 from google.oauth2 import service_account
+from pathlib import Path
+import os
+import pandas as pd
 
 time_format = '%m-%d'
 table_time_format = '%Y-%m-%d %H:%M:%S'
@@ -23,6 +26,16 @@ citymap = {
 }
 
 
+def query_prediction_request(city):
+    print(sys.path[0])
+    rootpath = Path(sys.path[0]).parent.parent
+    dirpath = os.path.join(rootpath, 'static', 'data', 'covid', 'predict')
+    filepath = os.path.join(dirpath, 'city_{}.csv'.format(city))
+    df = pd.read_csv(filepath, header=0)
+    df.round({'Predictions': 0})
+    return df
+
+
 def query_common_request(city, days):
     df = query_data_with_length(city, days)
     df['date'] = df['date'].dt.strftime(time_format)
@@ -32,13 +45,15 @@ def query_common_request(city, days):
         data['new'].append(str(row['new']))
     return data
 
+
 def query_data_with_length(city, days):
     cityname = citymap[city][0]
     state = citymap[city][1]
     country = citymap[city][2]
     source_table = prop['covid_dest_table']
     SQL = "SELECT * FROM (SELECT C.date, C.new FROM {} C WHERE C.city=@city AND C.state=@state AND C.country=@country \
-        ORDER BY C.date DESC LIMIT {}) AS C2 ORDER BY C2.date".format(source_table, days)
+        ORDER BY C.date DESC LIMIT {}) AS C2 ORDER BY C2.date".format(
+        source_table, days)
     query_config = {
         'query': {
             'parameterMode':
@@ -71,8 +86,8 @@ def query_data_with_length(city, days):
         }
     }
     df = pandas_gbq.read_gbq(SQL, configuration=query_config)
-    print('df: {}'.format(df))
     return df
+
 
 def query_data_with_dates(city, state, country, dateStart, dateEnd):
     source_table = prop['covid_dest_table']
@@ -128,7 +143,7 @@ def query_data_with_dates(city, state, country, dateStart, dateEnd):
     df = pandas_gbq.read_gbq(SQL, configuration=query_config)
     return df
 
-
+# print(query_prediction_request('nyc'))
 # data = query_common_data('Shanghai', 'Shanghai', 'China', '05-04-2021',
 #                          '06-02-2021')
 # print(data)

@@ -28,7 +28,7 @@ max = 50000
 min = 0
 maxlen = 365
 trainlen = 30
-predictlen = 30
+predictlen = 2
 rootpath = Path(sys.path[0]).parent.parent.parent
 modelpath = os.path.join(rootpath,'model','covid')
 
@@ -155,11 +155,12 @@ def predictcovid(city):
     predicted_res = []
     for sl in range(1, predictlen + 1):
         localmodelpath = os.path.join(modelpath, 'city_{}'.format(city), 'predictlen_{}'.format(sl))
+        print("model: {}".format(localmodelpath))
         lstm_model=models.load_model(localmodelpath)
 
         predicted_stock_price = lstm_model.predict(X_test)
         predicted_stock_price = scaler.inverse_transform(predicted_stock_price)
-        predicted_res.append(predicted_stock_price[0][0])
+        predicted_res.append(0 if predicted_stock_price[0][0]==0 else round(predicted_stock_price[0][0],0))
         
     predictdata['Predictions'] = predicted_res
     savepath = os.path.join(rootpath, 'static', 'data', 'covid', 'predict')
@@ -167,9 +168,9 @@ def predictcovid(city):
         os.makedirs(savepath)
     savefilepath = os.path.join(savepath, 'city_{}.csv'.format(city))
     predictdata.to_csv(savefilepath, mode='w')
-    plt.plot(predictdata['Predictions'], label='predictions')
-    plt.legend()
-    plt.show()
+    # plt.plot(predictdata['Predictions'], label='predictions')
+    # plt.legend()
+    # plt.show()
 
     
 
