@@ -28,7 +28,7 @@ max = 50000
 min = 0
 maxlen = 365
 trainlen = 30
-predictlen = 30
+predictlen = 1
 rootpath = Path(sys.path[0]).parent.parent.parent
 modelpath = os.path.join(rootpath,'model','covid')
 
@@ -112,7 +112,7 @@ def traincovid(city):
                     shutil.rmtree(filepath)
         else:
             os.makedirs(localmodelpath)
-        lstm_model.save(localmodelpath)
+        lstm_model.save(os.path.join(localmodelpath, 'model.h5'))
 
 
 def predictcovid(city):
@@ -154,7 +154,7 @@ def predictcovid(city):
     
     predicted_res = []
     for sl in range(1, predictlen + 1):
-        localmodelpath = os.path.join(modelpath, 'city_{}'.format(city), 'predictlen_{}'.format(sl))
+        localmodelpath = os.path.join(modelpath, 'city_{}'.format(city), 'predictlen_{}'.format(sl),'model.h5')
         # print("model: {}".format(localmodelpath))
         lstm_model=models.load_model(localmodelpath)
 
