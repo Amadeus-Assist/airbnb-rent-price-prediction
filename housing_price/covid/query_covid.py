@@ -143,7 +143,7 @@ def query_data_with_dates(city, state, country, dateStart, dateEnd):
     df = pandas_gbq.read_gbq(SQL, configuration=query_config)
     return df
 
-print(query_prediction_request('nyc'))
+# print(query_prediction_request('nyc'))
 # data = query_common_data('Shanghai', 'Shanghai', 'China', '05-04-2021',
 #                          '06-02-2021')
 # print(data)
