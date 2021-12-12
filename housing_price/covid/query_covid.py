@@ -24,7 +24,7 @@ citymap = {
 
 
 def query_common_request(city, days):
-    df = query_data_with_city(city, days)
+    df = query_data_with_length(city, days)
     df['date'] = df['date'].dt.strftime(time_format)
     data = {'date': [], 'new': []}
     for index, row in df.iterrows():
@@ -32,38 +32,57 @@ def query_common_request(city, days):
         data['new'].append(str(row['new']))
     return data
 
-def query_data_with_city(city, days):
+def query_data_with_length(city, days):
     cityname = citymap[city][0]
     state = citymap[city][1]
     country = citymap[city][2]
-    dateEnd = (dt.now() - timedelta(1)).strftime(table_time_format) + ' UTC'
-    dateStart = (dt.now() -
-                 timedelta(days)).strftime(table_time_format) + ' UTC'
-    df = query_data(cityname, state, country, dateStart, dateEnd)
-    return df
-
-def query_data(city, state, country, dateStart, dateEnd):
     source_table = prop['covid_dest_table']
-    # dateStart = dt.strptime(date_start.strip(),
-    #                         time_format).strftime(table_time_format) + ' UTC'
-    # dateEnd = dt.strptime(date_end.strip(),
-    #                       time_format).strftime(table_time_format) + ' UTC'
-    SQL = "SELECT C.date, C.new FROM {} C WHERE C.date BETWEEN @dateStart AND @dateEnd"\
-        " AND C.city=@city AND C.state=@state AND C.country=@country ORDER BY C.date".format(source_table)
-    # " AND C.city=@city AND C.state=@state AND C.country=@country ORDER BY C.date".format(source_table)
+    SQL = "SELECT * FROM (SELECT C.date, C.new FROM {} C WHERE C.city=@city AND C.state=@state AND C.country=@country \
+        ORDER BY C.date DESC LIMIT {}) AS C2 ORDER BY C2.date".format(source_table, days)
     query_config = {
         'query': {
             'parameterMode':
             'NAMED',
             'queryParameters': [{
-                'name': 'source_table',
+                'name': 'city',
                 'parameterType': {
                     'type': 'STRING'
                 },
                 'parameterValue': {
-                    'value': source_table
+                    'value': cityname
                 }
             }, {
+                'name': 'state',
+                'parameterType': {
+                    'type': 'STRING'
+                },
+                'parameterValue': {
+                    'value': state
+                }
+            }, {
+                'name': 'country',
+                'parameterType': {
+                    'type': 'STRING'
+                },
+                'parameterValue': {
+                    'value': country
+                }
+            }]
+        }
+    }
+    df = pandas_gbq.read_gbq(SQL, configuration=query_config)
+    print('df: {}'.format(df))
+    return df
+
+def query_data_with_dates(city, state, country, dateStart, dateEnd):
+    source_table = prop['covid_dest_table']
+    SQL = "SELECT C.date, C.new FROM {} C WHERE C.date BETWEEN @dateStart AND @dateEnd"\
+        " AND C.city=@city AND C.state=@state AND C.country=@country ORDER BY C.date".format(source_table)
+    query_config = {
+        'query': {
+            'parameterMode':
+            'NAMED',
+            'queryParameters': [{
                 'name': 'dateStart',
                 'parameterType': {
                     'type': 'TIMESTAMP'
