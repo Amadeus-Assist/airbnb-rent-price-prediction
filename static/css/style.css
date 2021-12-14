@@ -57,10 +57,42 @@
     color: black;
 }
 
-.chart-container{
-    width:45%;
+.tab-container{
+    width: 45%;
     height: 800px;
     float: right;
+}
+
+.tab-labels{
+    width: 100%;
+    height: 5%;
+    float: top;
+    background-color: black;
+}
+
+ul {
+    width: 100%;
+    height: 100%;
+    margin-top: 0;
+    float: top;
+    list-style: none;
+}
+li {
+    float: left;
+    width: 25%;
+    height: 100%;
+    margin-left: -6.3%;
+    text-align: center;
+    font: 600 18px/40px "simsun";
+    background-color: pink;
+    cursor: pointer;
+}
+
+
+.chart-container{
+    width: 100%;
+    height: 95%;
+    float: bottom;
 }
 
 .housing-chart{
@@ -92,3 +124,59 @@
     float: right;
     background-color: gray;
 }
+
+.prediction-housing-1{
+    width: 50%;
+    height: 50%;
+    float: left;
+    background-color: red;
+}
+
+.prediction-housing-2{
+    width: 50%;
+    height: 50%;
+    float: right;
+    background-color: orange;
+}
+
+.prediction-covid{
+    width: 50%;
+    height: 50%;
+    float: left;
+    background-color: green;
+}
+
+.housing-trend{
+    width: 20%;
+    height: 50%;
+    float: left;
+    background-color: blue;
+}
+
+.housing-analysis{
+    width: 30%;
+    height: 50%;
+    float: right;
+    background-color: purple;
+}
+
+/* .tab-labels{
+    width: 100%;
+    height: 10%;
+    float: top;
+    background-color: aqua;
+} */
+
+/* .history-label{
+    width: 25%;
+    height: 100%;
+    float: left;
+    background-color: beige;
+}
+
+.prediction-label{
+    width: 25%;
+    height: 100%;
+    float: left;
+    background-color: blueviolet;
+} */
