@@ -2,17 +2,34 @@
 {% block content %}
     {% load static %}
     <div id="mapid" class="map"></div>
-    <div class="tab-container" id="tab">
+    <div class="tab-container" id="tab-container">
         <div class="tab-labels" id="tab-labels">
             <ul>
                 <li class="history-label" id="history-label">history</li>
+                <li class="analysis-label" id="analysis-label">analysis</li>
                 <li class="prediction-label" id="prediction-label">prediction</li>
             </ul>
         </div>
-        <div class="chart-container" id="chart-container">
-            <div class="covid-chart" id="covid-chart"></div>
-            <div class="emotion-display" id="emotion-display"></div>
-            <div class="housing-chart" id="housing-chart"></div>
+        <div class="shown-tab" id="shown-tab">
+            <div class="history" id="history">
+                <div class="covid-chart-container"><div class="covid-chart" id="covid-chart"></div></div>
+                <div class="emotion-display-container"><div class="emotion-display" id="emotion-display"></div></div>
+                <div class="housing-chart-container"><div class="housing-chart" id="housing-chart"></div></div>
+            </div>
+        </div>
+        <div class="invisible-tabs" id="invisible-tabs">
+            <div class="analysis" id="analysis">
+                <div class="analysis1-container"><div class="analysis1" id="analysis1"></div></div>
+                <div class="analysis2-container"><div class="analysis2" id="analysis2"></div></div>
+                <div class="analysis3-container"><div class="analysis3" id="analysis3"></div></div>
+                <div class="analysis4-container"><div class="analysis4" id="analysis4"></div></div>
+            </div>
+            <div class="prediction" id="prediction">
+                <div class="prediction1-container"><div class="prediction1" id="prediction1"></div></div>
+                <div class="prediction2-container"><div class="prediction1" id="prediction2"></div></div>
+                <div class="prediction3-container"><div class="prediction1" id="prediction3"></div></div>
+                <div class="prediction4-container"><div class="prediction1" id="prediction4"></div></div>
+            </div>
         </div>
     </div>
     <!-- <script type="text/javascript">
@@ -39,5 +56,6 @@
     <script type="text/javascript" src='{% static "js/housingchart.js" %}'></script>
     <script type="text/javascript" src='{% static "js/covidchart.js" %}'></script>
     <script type="text/javascript" src='{% static "js/tabswitch.js" %}'></script>
+    <script type="text/javascript" src='{% static "js/expandcharts.js" %}'></script>
     <!-- <script type="text/javascript" src='{% static "js/loadcitypic.js" %}'></script> -->
 {% endblock %}
