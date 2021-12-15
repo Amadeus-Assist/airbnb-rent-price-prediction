@@ -24,21 +24,26 @@ citymap = {
     'sh': ('Shanghai', 'Shanghai', 'China'),
     'chicago': ('Cook', 'Illinois', 'US'),
 }
+rootpath = Path(sys.path[0])
+covidpath = os.path.join(rootpath, 'static', 'data', 'covid')
 
+def get_citymap():
+    return citymap
 
 def query_prediction_request(city):
-    print(sys.path[0])
-    rootpath = Path(sys.path[0]).parent.parent
-    dirpath = os.path.join(rootpath, 'static', 'data', 'covid', 'predict')
-    filepath = os.path.join(dirpath, 'city_{}.csv'.format(city))
+    filepath = os.path.join(covidpath, 'predict', 'city_{}.csv'.format(city))
     df = pd.read_csv(filepath, header=0)
     df.round({'Predictions': 0})
-    return df
+    data = {'date': [], 'predictions': []}
+    for index, row in df.iterrows():
+        data['date'].append(row['date'])
+        data['predictions'].append(str(row['Predictions']))
+    return data
 
 
-def query_common_request(city, days):
-    df = query_data_with_length(city, days)
-    df['date'] = df['date'].dt.strftime(time_format)
+def query_common_request(city):
+    filepath = os.path.join(covidpath, 'history', 'city_history_{}.csv'.format(city))
+    df = pd.read_csv(filepath, header=0)
     data = {'date': [], 'new': []}
     for index, row in df.iterrows():
         data['date'].append(row['date'])
@@ -46,10 +51,7 @@ def query_common_request(city, days):
     return data
 
 
-def query_data_with_length(city, days):
-    cityname = citymap[city][0]
-    state = citymap[city][1]
-    country = citymap[city][2]
+def query_data_with_length(cityname, state, country, days):
     source_table = prop['covid_dest_table']
     SQL = "SELECT * FROM (SELECT C.date, C.new FROM {} C WHERE C.city=@city AND C.state=@state AND C.country=@country \
         ORDER BY C.date DESC LIMIT {}) AS C2 ORDER BY C2.date".format(

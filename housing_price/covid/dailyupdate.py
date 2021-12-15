@@ -10,12 +10,13 @@ import os
 
 
 def parse_city(citystr):
-    res = set()
+    res = {}
     citystr = citystr[1:len(citystr) - 1]
     cc = citystr.split('),(')
     for tp in cc:
         tps = tp.split(',')
-        res.add((tps[0].strip(), tps[1].strip(), tps[2].strip()))
+        nest = [attr.strip() for attr in tps]
+        res[nest[0]] = nest
     return res
 
 
@@ -57,7 +58,7 @@ def covid_single_update(datestr):
         else:
             city_name = row['Admin2']
         if (city_name, row['Province_State'],
-                row['Country_Region']) in valid_cities:
+                row['Country_Region']) in valid_cities.keys():
             data_list.append([])
             data_list[row_idx].append(datestr)
             data_list[row_idx].append(city_name)
@@ -82,6 +83,8 @@ def covid_daily_update():
     datestr = (dt.now() - timedelta(1)).strftime(time_format)
     covid_single_update(datestr)
 
+
+# covid_single_update('12-14-2021')
 
 # dend = dt.strptime('2020-12-31', '%Y-%m-%d')
 # dstart = dt.strptime('2021-12-09', '%Y-%m-%d')

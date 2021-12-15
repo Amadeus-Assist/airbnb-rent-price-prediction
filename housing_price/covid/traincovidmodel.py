@@ -4,7 +4,7 @@ import sys
 import keras
 
 sys.path.append('housing_price/.')
-from covid.query_covid import query_data_with_length
+from covid.query_covid import query_data_with_length, get_citymap
 # from pandas_datareader import data as pdr
 import pandas as pd
 # import yfinance as yf
@@ -31,9 +31,11 @@ trainlen = 30
 predictlen = 30
 rootpath = Path(sys.path[0]).parent.parent.parent
 modelpath = os.path.join(rootpath,'model','covid')
+citymap = get_citymap()
+
 
 def traincovid(city):
-    data = query_data_with_length(city, maxlen)
+    data = query_data_with_length(citymap[city][0], citymap[city][1], citymap[city][2], maxlen)
     length = len(data)
     # shiftlen = 30
     yaxisname = 'new'
@@ -116,7 +118,7 @@ def traincovid(city):
 
 
 def predictcovid(city):
-    data = query_data_with_length(city, trainlen)
+    data = query_data_with_length(citymap[city][0], citymap[city][1], citymap[city][2], trainlen)
     length = len(data)
     yaxisname = 'new'
     xaxisname = 'date'

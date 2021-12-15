@@ -4,7 +4,7 @@ sys.path.append('housing_price/.')
 from django.shortcuts import render
 from django.http import HttpResponse
 import pandas as pd
-from housing_price.covid.query_covid import query_common_request
+from housing_price.covid.query_covid import query_common_request, query_prediction_request
 
 
 def map(request):
@@ -23,10 +23,14 @@ def city_view(request, city):
     median_list = housingMedian.values.tolist()
 
     # reder covid chart
-    coviddata = query_common_request(city, 270)
+    coviddata = query_common_request(city)
 
     datelist_covid = coviddata['date']
     newlist_covid = coviddata['new']
+
+    covidpredictdata = query_prediction_request(city)
+    datelist_covid_predict = covidpredictdata['date']
+    newlist_covid_predict = covidpredictdata['predictions']
 
     data = {
         "date_list": '|'.join(date_list),
@@ -34,6 +38,8 @@ def city_view(request, city):
         "median_list": '|'.join(median_list),
         "covid_date_list": '|'.join(datelist_covid),
         "covid_new_list": '|'.join(newlist_covid),
+        "covid_date_list_predict": '|'.join(datelist_covid_predict),
+        "covid_new_list_predict": '|'.join(newlist_covid_predict),
         "city": city
     }
 
