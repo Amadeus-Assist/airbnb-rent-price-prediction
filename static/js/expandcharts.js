@@ -9,8 +9,8 @@ isExpand = false;
 
 for (var i = 0; i < chartlist.length; i++) {
     // $("#"+chartlist[i]).click(function(){
-    //     // var prop = {}
-    //     // var speed = 100;
+    //     var prop = {}
+    //     var speed = 1;
     //     if (!isExpand) {
     //         while (expandcontainer.children.length > 0) {
     //             storedElements.push(expandcontainer.removeChild(expandcontainer.children[0]));
@@ -18,7 +18,12 @@ for (var i = 0; i < chartlist.length; i++) {
     //         parentdiv = this.parentNode;
     //         expandcontainer.appendChild(this);
     //         isExpand = !isExpand;
-    //         // $("#"+this.id).animate(prop, speed);
+    //         // prop.width = "100%";
+    //         // prop.height = "100%";
+    //         $("#"+this.id).animate(prop, speed);
+    //         // setTimeout(function() { 
+    //         //     $("#"+this.id).css("position","absolute");
+    //         //   }, 920);
     //     } else {
     //         parentdiv.appendChild(this);
     //         while (storedElements.length > 0) {
