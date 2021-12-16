@@ -33,11 +33,10 @@ def get_citymap():
 def query_prediction_request(city):
     filepath = os.path.join(covidpath, 'predict', 'city_{}.csv'.format(city))
     df = pd.read_csv(filepath, header=0)
-    df.round({'Predictions': 0})
     data = {'date': [], 'predictions': []}
     for index, row in df.iterrows():
         data['date'].append(row['date'])
-        data['predictions'].append(str(row['Predictions']))
+        data['predictions'].append(str(row['predictions']))
     return data
 
 

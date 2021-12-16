@@ -164,7 +164,7 @@ def predictcovid(city):
         predicted_stock_price = scaler.inverse_transform(predicted_stock_price)
         predicted_res.append(0 if predicted_stock_price[0][0]==0 else round(predicted_stock_price[0][0],0))
         
-    predictdata['Predictions'] = predicted_res
+    predictdata['predictions'] = predicted_res
     savepath = os.path.join(rootpath, 'static', 'data', 'covid', 'predict')
     if not os.path.exists(savepath):
         os.makedirs(savepath)
