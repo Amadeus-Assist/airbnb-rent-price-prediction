@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 import pandas as pd
 from housing_price.covid.query_covid import query_common_request, query_prediction_request
-
+from housing_price.covid.query_housing import query_housing_prediction_request
 
 def map(request):
     return render(request, 'map.html')
@@ -32,6 +32,10 @@ def city_view(request, city):
     datelist_covid_predict = covidpredictdata['date']
     newlist_covid_predict = covidpredictdata['predictions']
 
+    housingpredictdata = query_housing_prediction_request(city)
+    datelist_housing_predict = housingpredictdata['date']
+    housing_predict = housingpredictdata['predictions']
+
     data = {
         "date_list": '|'.join(date_list),
         "avg_list": '|'.join(avg_list),
@@ -40,6 +44,8 @@ def city_view(request, city):
         "covid_new_list": '|'.join(newlist_covid),
         "covid_date_list_predict": '|'.join(datelist_covid_predict),
         "covid_new_list_predict": '|'.join(newlist_covid_predict),
+        "housing_date_list_predict": '|'.join(datelist_housing_predict),
+        "housing_predict": '|'.join(housing_predict),
         "city": city
     }
 

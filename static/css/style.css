@@ -219,7 +219,6 @@ li {
     width: 50%;
     height: 50%;
     float: left;
-    background-color: cadetblue;
 }
 
 .prediction1{
@@ -231,7 +230,6 @@ li {
     width: 50%;
     height: 50%;
     float: right;
-    background-color: chocolate;
 }
 
 .prediction2{
