@@ -1,13 +1,10 @@
 const sentiment_datesdsds = sentiment_date.split("|");
 const sentiment_datadfsdf = sentiment_data.split("|");
 
-console.log(sentiment_data)
-
 const sentiment__data = [];
 for (let i = 0; i < sentiment_datesdsds.length; i++) {
     sentiment__data.push({ label: sentiment_datesdsds[i], value: sentiment_datadfsdf[i] });
 }
-console.log(sentiment__data)
 
 const sentimentData = {
     chart: {
@@ -19,7 +16,8 @@ const sentimentData = {
         labelStep: "28",
         theme: "candy",
         labelDisplay: "rotate",
-        slantLabel: "1"
+        slantLabel: "1",
+        showvalues: "0",
     },
     data: sentiment__data
 };

@@ -38,7 +38,6 @@ def city_view(request, city):
     housing_predict = housingpredictdata['predictions']
 
     sentimentdata = query_sentiment_request(city)
-    print(sentimentdata)
 
     data = {
         "date_list": '|'.join(date_list),

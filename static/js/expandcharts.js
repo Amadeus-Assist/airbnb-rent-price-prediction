@@ -1,6 +1,6 @@
 let chartlist = ["covid-chart", "housing-chart",
     "analysis1", "analysis2", "analysis3", "analysis4",
-    "prediction1", "prediction2"];
+    "prediction1", "prediction2", "emotion-display"];
 
 let storedElements = []
 var expandcontainer = document.getElementById("tab-container");
