@@ -63,6 +63,8 @@
         var medianList = `{{ median_list }}`;
         var avgList = `{{ avg_list }}`;
         var city = "{{ city }}";
+        var sentiment_date = "{{ sentimentdate }}"
+        var sentiment_data = "{{ sentimentdata }}"
         // var cityPicNum = 1;
     </script>
     <script type="text/javascript" src='{% static "js/citylocation.js" %}'></script>
@@ -73,4 +75,5 @@
     <script type="text/javascript" src='{% static "js/expandcharts.js" %}'></script>
     <script type="text/javascript" src='{% static "js/renderanalysis.js" %}'></script>
     <!-- <script type="text/javascript" src='{% static "js/loadcitypic.js" %}'></script> -->
+    <script type="text/javascript" src='{% static "js/sentiment.js" %}'></script>
 {% endblock %}
