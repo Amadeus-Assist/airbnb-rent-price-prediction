@@ -27,14 +27,20 @@
     font-weight: normal;
 }
 
+.outer-container{
+    width: 100%;
+    height: 50vw;
+}
+
 .map {
-    width: 55%;
-    height: 800px;
+    width: 50%;
+    height: 100%;
     float: left;
 }
 
 .worldmap {
-    height: 800px;
+    height: 100%;
+    width: 100%;
 }
 
 #predict-form {
@@ -58,8 +64,8 @@
 }
 
 .tab-container{
-    width: 45%;
-    height: 800px;
+    width: 50%;
+    height: 100%;
     float: right;
 }
 

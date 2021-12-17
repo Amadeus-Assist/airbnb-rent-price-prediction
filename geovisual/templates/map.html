@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
     {% load static %}
-    <div id="worldmapid" class="worldmap"></div>
+    <div class="outer-container">
+        <div id="worldmapid" class="worldmap"></div>
+    </div>
     <script type="text/javascript" src='{% static "js/citylocation.js" %}'></script>
     <script type="text/javascript" src='{% static "js/map.js" %}'></script>
 {% endblock %}
