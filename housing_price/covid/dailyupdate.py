@@ -57,8 +57,8 @@ def covid_single_update(datestr):
             city_name = row['Province_State']
         else:
             city_name = row['Admin2']
-        if (city_name, row['Province_State'],
-                row['Country_Region']) in valid_cities.keys():
+        if [city_name, row['Province_State'],
+                row['Country_Region']] in valid_cities.values():
             data_list.append([])
             data_list[row_idx].append(datestr)
             data_list[row_idx].append(city_name)
@@ -84,7 +84,7 @@ def covid_daily_update():
     covid_single_update(datestr)
 
 
-# covid_single_update('12-14-2021')
+# covid_single_update('12-16-2021')
 
 # dend = dt.strptime('2020-12-31', '%Y-%m-%d')
 # dstart = dt.strptime('2021-12-09', '%Y-%m-%d')

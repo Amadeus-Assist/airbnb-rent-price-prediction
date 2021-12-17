@@ -5,5 +5,7 @@ sys.path.append('housing_price/.')
 from covid.traincovidmodel import traincovid
 
 
+traincovid('nyc')
+traincovid('la')
 traincovid('chicago')
 # print(Path(sys.path[0]).parent.parent)
