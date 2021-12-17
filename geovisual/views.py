@@ -6,6 +6,7 @@ from django.http import HttpResponse
 import pandas as pd
 from housing_price.covid.query_covid import query_common_request, query_prediction_request
 from housing_price.covid.query_housing import query_housing_prediction_request
+from housing_price.housing.queryanalysisimgs import queryanalysispath
 
 def map(request):
     return render(request, 'map.html')

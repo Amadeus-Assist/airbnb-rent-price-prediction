@@ -33,7 +33,7 @@
 }
 
 .map {
-    width: 50%;
+    width: 52.5%;
     height: 100%;
     float: left;
 }
@@ -64,7 +64,7 @@
 }
 
 .tab-container{
-    width: 50%;
+    width: 47.5%;
     height: 100%;
     float: right;
 }
@@ -168,57 +168,62 @@ li {
     width: 50%;
     height: 50%;
     float: right;
-    background-color: gray;
 }
 
 .analysis1-container{
     width: 50%;
     height: 50%;
     float: left;
-    background-color: aqua;
 }
 
 .analysis1{
     width: 100%;
     height: 100%;
-    background-color: blue;
+    border-width:2px;
+    border-style:solid;
+    border-color:black;
 }
 
 .analysis2-container{
     width: 50%;
-    height: 50%;
+    height: 25%;
     float: right;
-    background-color: bisque;
 }
 
 .analysis2{
     width: 100%;
     height: 100%;
-    background-color: chocolate;
+    border-width:2px;
+    border-style:solid;
+    border-color:black;
 }
 
 .analysis3-container{
     width: 50%;
-    height: 50%;
-    float: left;
-    background-color: blueviolet;
+    height: 25%;
+    float: right;
 }
 
 .analysis3{
     width: 100%;
     height: 100%;
+    border-width:2px;
+    border-style:solid;
+    border-color:black;
 }
 
 .analysis4-container{
-    width: 50%;
+    width: 100%;
     height: 50%;
     float: right;
-    background-color: brown;
 }
 
 .analysis4{
     width: 100%;
     height: 100%;
+    border-width:2px;
+    border-style:solid;
+    border-color:black;
 }
 
 .prediction1-container{

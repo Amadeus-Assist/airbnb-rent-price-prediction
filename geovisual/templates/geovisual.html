@@ -20,10 +20,18 @@
             </div>
             <div class="invisible-tabs" id="invisible-tabs">
                 <div class="analysis" id="analysis">
-                    <div class="analysis1-container"><div class="analysis1" id="analysis1"></div></div>
-                    <div class="analysis2-container"><div class="analysis2" id="analysis2"></div></div>
-                    <div class="analysis3-container"><div class="analysis3" id="analysis3"></div></div>
-                    <div class="analysis4-container"><div class="analysis4" id="analysis4"></div></div>
+                    <div class="analysis1-container"><div class="analysis1" id="analysis1">
+                        <img id="analysis-img1">
+                    </div></div>
+                    <div class="analysis2-container"><div class="analysis2" id="analysis2">
+                        <img id="analysis-img2">
+                    </div></div>
+                    <div class="analysis3-container"><div class="analysis3" id="analysis3">
+                        <img id="analysis-img3">
+                    </div></div>
+                    <div class="analysis4-container"><div class="analysis4" id="analysis4">
+                        <img id="analysis-img4">
+                    </div></div>
                 </div>
                 <div class="prediction" id="prediction">
                     <div class="prediction1-container"><div class="prediction1" id="prediction1"></div></div>
@@ -63,5 +71,6 @@
     <script type="text/javascript" src='{% static "js/covidchart.js" %}'></script>
     <script type="text/javascript" src='{% static "js/tabswitch.js" %}'></script>
     <script type="text/javascript" src='{% static "js/expandcharts.js" %}'></script>
+    <script type="text/javascript" src='{% static "js/renderanalysis.js" %}'></script>
     <!-- <script type="text/javascript" src='{% static "js/loadcitypic.js" %}'></script> -->
 {% endblock %}
