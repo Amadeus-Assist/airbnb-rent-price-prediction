@@ -44,8 +44,15 @@
 <div class="ui vertical masthead segment">
     <div class="ui container">
         <div class="ui secondary menu">
+
             <a href="{% url 'home' %}" class="item">Home</a>
             <a href="{% url 'map' %}" class="item">World Map</a>
+            <a class="right item">
+                Group 21 - Airbnb Price Prediction Project
+            </a>
+            <div class="item">
+                <img src="/static/img/cu.png">
+            </div>
         </div>
     </div>
     <section id="content">{% block content %}{% endblock %}</section>
