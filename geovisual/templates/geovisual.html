@@ -2,39 +2,17 @@
 {% block content %}
     {% load static %}
     <div class="outer-container">
+
         <div id="mapid" class="map"></div>
 
         <div class="tab-container" id="tab-container">
-            <div class="w3-row">
-                <div class="w3-third tablink w3-hover-light-grey w3-padding" id="history-label">History</div>
-                <div class="w3-third tablink w3-hover-light-grey w3-padding" id="analysis-label">Analysis</div>
-                <div class="w3-third tablink w3-hover-light-grey w3-padding" id="prediction-label">Prediction</div>
+
+            <div class="ui teal three item menu">
+                <div class="ui active item" id="history-label">History</div>
+                <div class="item" id="analysis-label">Analysis</div>
+                <div class="item" id="prediction-label">Prediction</div>
             </div>
 
-            <div id="London" class="w3-container city" style="display:none">
-                <h2>London</h2>
-                <p>London is the capital city of England.</p>
-            </div>
-
-            <div id="Paris" class="w3-container city" style="display:none">
-                <h2>Paris</h2>
-                <p>Paris is the capital of France.</p>
-            </div>
-
-            <div id="Tokyo" class="w3-container city" style="display:none">
-                <h2>Tokyo</h2>
-                <p>Tokyo is the capital of Japan.</p>
-            </div>
-
-
-            {##}
-            {#            <div class="tab-labels" id="tab-labels">#}
-            {#                <ul>#}
-            {#                    <li class="history-label" id="history-label">History</li>#}
-            {#                    <li class="analysis-label" id="analysis-label">Analysis</li>#}
-            {#                    <li class="prediction-label" id="prediction-label">Prediction</li>#}
-            {#                </ul>#}
-            {#            </div>#}
             <div class="shown-tab" id="shown-tab">
                 <div class="history" id="history">
                     <div class="covid-chart-container">
@@ -108,6 +86,26 @@
         var sentiment_date = "{{ sentimentdate }}"
         var sentiment_data = "{{ sentimentdata }}"
         // var cityPicNum = 1;
+
+        $(document).ready(function () {
+            $('.ui.red.menu').menu();
+        });
+
+    </script>
+    <script>
+        $(document)
+            .ready(function () {
+                $('.ui.menu div.item')
+                    .on('click', function () {
+                        $(this)
+                            .addClass('active')
+                            .siblings()
+                            .removeClass('active')
+                        ;
+                    })
+                ;
+            })
+        ;
     </script>
     <script type="text/javascript" src='{% static "js/citylocation.js" %}'></script>
     <script type="text/javascript" src='{% static "js/geovisual.js" %}'></script>

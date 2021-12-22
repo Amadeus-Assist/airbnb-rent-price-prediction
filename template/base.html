@@ -20,18 +20,40 @@
             crossorigin=""></script>
 
     <script src='{% static "js/leaflet.markercluster-src.js" %}'></script>
+
+    <script>
+        $(document)
+            .ready(function () {
+                $('.ui.menu a.item')
+                    .on('click', function () {
+                        $(this)
+                            .addClass('active')
+                            .siblings()
+                            .removeClass('active')
+                        ;
+                    })
+                ;
+            })
+        ;
+    </script>
+
     <link rel="stylesheet" href='{% static "css/MarkerCluster.Default.css" %}'>
 
 </head>
 <body>
 <div class="ui vertical masthead segment">
     <div class="ui container">
-        <div class="ui large secondary pointing">
+        <div class="ui secondary menu">
             <a href="{% url 'home' %}" class="item">Home</a>
             <a href="{% url 'map' %}" class="item">World Map</a>
         </div>
     </div>
     <section id="content">{% block content %}{% endblock %}</section>
 </div>
+
+<div class="ui divider"></div>
+
 </body>
 </html>
+
+
