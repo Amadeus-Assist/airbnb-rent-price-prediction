@@ -272,26 +272,26 @@ def predictcovid(city):
 # valid_data = data[length - predictlen:]
 # valid_data['Predictions'] = predicted_res
 
-import matplotlib.ticker as ticker
+# import matplotlib.ticker as ticker
 
-datedf = pd.read_csv("E:\Columbia University\Courses\Big-Data Analytics\housing_price_prediction\static\data\covid\history\city_history_nyc.csv", header=0)
-hisdf = pd.read_csv("E:\Columbia University\Courses\Big-Data Analytics\housing_price_prediction\static\data\housing\history\housing_price_nyc.csv", header=0)
-predf = pd.read_csv("E:\Columbia University\Courses\Big-Data Analytics\housing_price_prediction\static\data\housing\predict\city_nyc.csv", header=0)
+# datedf = pd.read_csv("E:\Columbia University\Courses\Big-Data Analytics\housing_price_prediction\static\data\covid\history\city_history_nyc.csv", header=0)
+# hisdf = pd.read_csv("E:\Columbia University\Courses\Big-Data Analytics\housing_price_prediction\static\data\housing\history\housing_price_nyc.csv", header=0)
+# predf = pd.read_csv("E:\Columbia University\Courses\Big-Data Analytics\housing_price_prediction\static\data\housing\predict\city_nyc.csv", header=0)
 
-datedf['housing'] = hisdf['housing'][-270:]
-# hisdf['date']=pd.to_datetime(hisdf.date, format='%Y/%m/%d').dt.strftime('%m-%d')
-datedf.index = datedf['date']
-datedf.drop('date', axis=1, inplace=True)
-datedf.drop('new', axis=1, inplace=True)
-print(datedf)
+# datedf['housing'] = hisdf['housing'][-270:]
+# # hisdf['date']=pd.to_datetime(hisdf.date, format='%Y/%m/%d').dt.strftime('%m-%d')
+# datedf.index = datedf['date']
+# datedf.drop('date', axis=1, inplace=True)
+# datedf.drop('new', axis=1, inplace=True)
+# print(datedf)
 
-predf.index = predf['date']
-predf.drop('date', axis=1, inplace=True)
+# predf.index = predf['date']
+# predf.drop('date', axis=1, inplace=True)
 
-plot = plt.plot(datedf['housing'], label='History')
-plot = plt.plot(predf['predictions'], label='Prediction', color='green')
-ax = plt.gca()
-ax.xaxis.set_major_locator(ticker.MultipleLocator(14))
+# plot = plt.plot(datedf['housing'], label='History')
+# plot = plt.plot(predf['predictions'], label='Prediction', color='green')
+# ax = plt.gca()
+# ax.xaxis.set_major_locator(ticker.MultipleLocator(14))
 
-plt.legend()
-plt.show()
+# plt.legend()
+# plt.show()
