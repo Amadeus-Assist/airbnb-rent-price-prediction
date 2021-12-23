@@ -2,6 +2,7 @@ from datetime import datetime, time, timedelta
 import sys
 
 import keras
+from matplotlib import colors
 
 sys.path.append('housing_price/.')
 from covid.query_covid import query_data_with_length, get_citymap
@@ -27,7 +28,7 @@ rcParams['figure.figsize'] = 20, 10
 max = 50000
 min = 0
 maxlen = 365
-trainlen = 30
+trainlen = 14
 predictlen = 30
 rootpath = Path(sys.path[0]).parent.parent.parent
 modelpath = os.path.join(rootpath,'model','covid')
@@ -270,8 +271,27 @@ def predictcovid(city):
 # train_data = data[:length - predictlen]
 # valid_data = data[length - predictlen:]
 # valid_data['Predictions'] = predicted_res
-# plt.plot(train_data[yaxisname], label='Train Data')
-# plt.plot(valid_data[[yaxisname, "Predictions"]],
-#          label=['Valid Data', 'Prediction Data'])
-# plt.legend()
-# plt.show()
+
+import matplotlib.ticker as ticker
+
+datedf = pd.read_csv("E:\Columbia University\Courses\Big-Data Analytics\housing_price_prediction\static\data\covid\history\city_history_nyc.csv", header=0)
+hisdf = pd.read_csv("E:\Columbia University\Courses\Big-Data Analytics\housing_price_prediction\static\data\housing\history\housing_price_nyc.csv", header=0)
+predf = pd.read_csv("E:\Columbia University\Courses\Big-Data Analytics\housing_price_prediction\static\data\housing\predict\city_nyc.csv", header=0)
+
+datedf['housing'] = hisdf['housing'][-270:]
+# hisdf['date']=pd.to_datetime(hisdf.date, format='%Y/%m/%d').dt.strftime('%m-%d')
+datedf.index = datedf['date']
+datedf.drop('date', axis=1, inplace=True)
+datedf.drop('new', axis=1, inplace=True)
+print(datedf)
+
+predf.index = predf['date']
+predf.drop('date', axis=1, inplace=True)
+
+plot = plt.plot(datedf['housing'], label='History')
+plot = plt.plot(predf['predictions'], label='Prediction', color='green')
+ax = plt.gca()
+ax.xaxis.set_major_locator(ticker.MultipleLocator(14))
+
+plt.legend()
+plt.show()
